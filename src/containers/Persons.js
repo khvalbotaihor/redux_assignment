@@ -49,4 +49,10 @@ const mapStateProps = state =>{
     }
 }
 
-export default connect(mapStateProps)(Persons);
+const mapDispatchToProps = dispatch =>{
+    return{
+        onAddPerson: ()=>dispatch({type:'ADD_USER'})
+    }
+}
+
+export default connect(mapStateProps,mapDispatchToProps)(Persons);
