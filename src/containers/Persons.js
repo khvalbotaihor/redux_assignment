@@ -30,13 +30,13 @@ class Persons extends Component {
     render () {
         return (
             <div>
-                <AddPerson personAdded={this.personAddedHandler} />
-                {this.state.persons.map(person => (
+                <AddPerson personAdded={this.props.onAddPerson} />
+                {this.props.pers.map(person => (
                     <Person 
                         key={person.id}
                         name={person.name} 
                         age={person.age} 
-                        clicked={() => this.personDeletedHandler(person.id)}/>
+                        clicked={() => this.props.onDeletePerson(person.id)}/>
                 ))}
             </div>
         );
@@ -45,7 +45,7 @@ class Persons extends Component {
 
 const mapStateProps = state =>{
     return{
-        pers: state.persons
+        pers: state.persons.pers
     }
 }
 
