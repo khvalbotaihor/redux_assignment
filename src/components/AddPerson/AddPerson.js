@@ -22,7 +22,7 @@ class AddPerson extends Component {
         return <div className="AddPerson">
             <input type="text" placeholder="Name" onChange={this.nameChangeHandler}/>
             <input type="number" placeholder="Age" onChange={this.ageChangeHandler}/>
-            <button onClick={this.props.personAdded}>Add Person</button>
+            <button onClick={()=> this.props.personAdded(this.state.name, this.state.age)}>Add Person</button>
         </div>
     }
 }
