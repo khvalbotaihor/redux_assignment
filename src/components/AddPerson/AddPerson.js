@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import './AddPerson.css';
 
-const addPerson = (props) => (
-    <div className="AddPerson">
-        <input type="text" placeholder="Name"/>
-        <input type="numbr" placeholder="Age"/>
-        <button onClick={props.personAdded}>Add Person</button>
-    </div>
-);
+class AddPerson extends Component {
+    state = {
+        name: '',
+        age: null
+    }
+    nameChangeHandler = (event) => {
+        this.setState({
+            name: event.target.value,
+        })
+    }
+    ageChangeHandler = (event) => {
+        this.setState({
+            age: event.target.value
+        })
+    }
 
-export default addPerson;
+    render() {
+        return <div className="AddPerson">
+            <input type="text" placeholder="Name" onChange={this.nameChangeHandler}/>
+            <input type="number" placeholder="Age" onChange={this.ageChangeHandler}/>
+            <button onClick={this.props.personAdded}>Add Person</button>
+        </div>
+    }
+}
+
+
+export default AddPerson;
