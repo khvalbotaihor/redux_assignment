@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
         case 'DELETE_USER':
             return {
                 ...state,
-
+                pers: state.persons.filter(res => res.id !== action.resultEl)
             }
 
         default:
