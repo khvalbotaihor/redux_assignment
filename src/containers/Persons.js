@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import {connect} from 'react-redux';
+
 import Person from '../components/Person/Person';
 import AddPerson from '../components/AddPerson/AddPerson';
 
@@ -41,4 +43,10 @@ class Persons extends Component {
     }
 }
 
-export default Persons;
+const mapStateProps = state =>{
+    return{
+        pers: state.persons
+    }
+}
+
+export default connect(mapStateProps)(Persons);
