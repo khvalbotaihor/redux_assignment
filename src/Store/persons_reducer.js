@@ -7,7 +7,7 @@ const reducer = (state = initialState, action) => {
         case 'ADD_USER':
             return {
                 ...state,
-                pers: state.persons.concat({
+                persons: state.persons.concat({
                     id: Math.random(), // not really unique but good enough here!
                     name: 'Max',
                     age: Math.floor(Math.random() * 40)
@@ -16,12 +16,11 @@ const reducer = (state = initialState, action) => {
         case 'DELETE_USER':
             return {
                 ...state,
-                pers: state.persons.filter(res => res.id !== action.resultEl)
+                persons: state.persons.filter(person => person.id !== action.personId)
             }
-
-        default:
-            return state;
     }
+    return state;
+
 }
 
 export default reducer;

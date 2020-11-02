@@ -6,7 +6,7 @@ import Person from '../components/Person/Person';
 import AddPerson from '../components/AddPerson/AddPerson';
 
 class Persons extends Component {
-    state = {
+/*    state = {
         persons: []
     }
 
@@ -25,35 +25,41 @@ class Persons extends Component {
         this.setState( ( prevState ) => {
             return { persons: prevState.persons.filter(person => person.id !== personId)}
         } );
-    }
+    }*/
 
     render () {
         return (
             <div>
                 <AddPerson personAdded={this.props.onAddPerson} />
-                {this.props.pers.map(person => (
-                    <Person 
-                        key={person.id}
-                        name={person.name} 
-                        age={person.age} 
-                        clicked={() => this.props.onDeletePerson(person.id)}/>
-                ))}
+
+                {this.props.prs.map(person => {
+                    debugger;
+                    return (
+                            <Person
+                                key={person.id}
+                                name={person.name}
+                                age={person.age}
+                                clicked={() => this.props.onDeletePerson(person.id)}/>
+                    )
+                    }
+
+                )}
             </div>
         );
     }
 }
 
-const mapStateProps = state =>{
-    return{
-        pers: state.persons.pers
+const mapStateToProps = state => {
+    return {
+        prs: state.persons
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return{
-        onAddPerson: ()=>dispatch({type:'ADD_USER'}),
-        onDeletePerson: (res)=>dispatch({type:'DELETE_USER', resultEl:res}),
+        onAddPerson: () => dispatch({type:'ADD_USER'}),
+        onDeletePerson: (id) => dispatch({type:'DELETE_USER', personId:id}),
     }
 }
 
-export default connect(mapStateProps,mapDispatchToProps)(Persons);
+export default connect(mapStateToProps,mapDispatchToProps)(Persons);
